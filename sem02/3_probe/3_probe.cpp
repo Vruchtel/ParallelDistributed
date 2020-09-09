@@ -24,14 +24,19 @@ int main(int argc, char *argv[]) {
         std::cout << "Process 0 sent " << numbers_amount << " numbers to process 1" << std::endl;
     }
     else if (procid == 1) {
-        /// TODO: Создать массив нужного размера и записать в него полученные данные
         MPI_Status status;
-        MPI_Probe(0, 0, MPI_COMM_WORLD, &status);
         
+		MPI_Probe(
+            0,  /*source*/
+            0,  /*tag*/
+            MPI_COMM_WORLD,
+            &status
+        );
         MPI_Get_count(&status, MPI_INT, &numbers_amount);
         
-        int *numbers = new int[numbers_amount];
-        MPI_Recv(numbers, numbers_amount, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        int* buffer = new int[numbers_amount];
+        
+        MPI_Recv(buffer, numbers_amount, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         
         std::cout << "Process 1 received " << numbers_amount << " numbers from process 0" << std::endl;
         std::cout << "Message source is " << status.MPI_SOURCE << ", tag is " << status.MPI_TAG << std::endl;

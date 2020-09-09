@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     int array[N];
     int recv_array[N];
     MPI_Status status;
-    MPI_Request request;
+    MPI_Request request[2];
     
     int part_len = N / num_procs;
     
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
         }
         for (int i = 0; i < num_procs; i++) {
             // Отправляем каждому рабочему процессу часть данных
-            MPI_Isend(&array[i * part_len], part_len, MPI_INT, i, i, MPI_COMM_WORLD, &request);
+            MPI_Isend(&array[i * part_len], part_len, MPI_INT, i, i, MPI_COMM_WORLD, &request[0]);
         }
     }
         
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     }
     
     // ... и отправит её обратно нулевому процессу...
-    MPI_Isend(&sum, 1, MPI_INT, 0, procid, MPI_COMM_WORLD, &request);
+    MPI_Isend(&sum, 1, MPI_INT, 0, procid, MPI_COMM_WORLD, &request[1]);
     
     // ... который получит данные не важно в каком порядке
     if (procid == 0) {
