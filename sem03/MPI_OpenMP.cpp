@@ -1,8 +1,8 @@
-﻿#include<stdlib.h>
-#include<stdio.h>
+﻿#include <stdlib.h>
+#include <stdio.h>
 #include <iostream>
-#include<mpi.h>
-#include<omp.h>
+#include <mpi.h>
+#include <omp.h>
 
 /* Пример А. Долуденко */
 
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 
        // printf("I'm process # %d, begin = %d, chunk = %d \n", rank, begin, chunk);
     }
-#pragma omp parallel 
+#pragma omp parallel private(myid)
     {
         myid = omp_get_thread_num();
         num_threads = omp_get_num_threads();

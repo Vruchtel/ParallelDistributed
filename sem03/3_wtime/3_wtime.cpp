@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
         
         # pragma omp for schedule(dynamic, 1000) reduction(+:sum)
         for (int i = 0; i < 100000000; i++) {
-            sum += 1;
+            sum += 1; 
         }
     }
     
