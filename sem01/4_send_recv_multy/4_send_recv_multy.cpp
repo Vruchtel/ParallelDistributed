@@ -1,6 +1,8 @@
 #include <iostream>
 #include <mpi.h>
 
+/*0й процесс отправит всем остальным свой кусочек, на котором каждый из процессов посчитает свою сумму*/
+
 int main(int argc, char *argv[]) {
     MPI_Init(&argc, &argv);
     

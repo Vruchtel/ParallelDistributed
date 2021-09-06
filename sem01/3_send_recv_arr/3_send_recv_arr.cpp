@@ -1,6 +1,8 @@
 #include <iostream>
 #include <mpi.h>
 
+/*0й процесс отправит 1му вторую половину массива. 1й посчитает сумму полученных */
+
 int main(int argc, char *argv[]) {
     MPI_Init(&argc, &argv);
     
