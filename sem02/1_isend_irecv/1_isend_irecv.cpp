@@ -1,6 +1,8 @@
 #include <iostream>
 #include <mpi.h>
 
+/*Каждый процесс отправляет свой id левому и правому соседу*/
+
 int main(int argc, char *argv[]) {
     MPI_Init(&argc, &argv);
     

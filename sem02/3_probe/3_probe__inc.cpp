@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <mpi.h>
 
+/*Процесс 0 отправляет процессу 1 массив случайного размера*/
+
 int main(int argc, char *argv[]) {
     MPI_Init(&argc, &argv);
     
@@ -25,13 +27,6 @@ int main(int argc, char *argv[]) {
     }
     else if (procid == 1) {
         /// TODO: Создать массив нужного размера и записать в него полученные данные
-        MPI_Status status;
-        MPI_Probe(0, 0, MPI_COMM_WORLD, &status);
-        
-        MPI_Get_count(&status, MPI_INT, &numbers_amount);
-        
-        int *numbers = new int[numbers_amount];
-        MPI_Recv(numbers, numbers_amount, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         
         std::cout << "Process 1 received " << numbers_amount << " numbers from process 0" << std::endl;
         std::cout << "Message source is " << status.MPI_SOURCE << ", tag is " << status.MPI_TAG << std::endl;

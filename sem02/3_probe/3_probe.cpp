@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <mpi.h>
 
+/*Процесс 0 отправляет процессу 1 массив случайного размера*/
+
 int main(int argc, char *argv[]) {
     MPI_Init(&argc, &argv);
     
