@@ -42,6 +42,8 @@ int main(int argc, char *argv[]) {
         
         std::cout << "Process 1 received " << numbers_amount << " numbers from process 0" << std::endl;
         std::cout << "Message source is " << status.MPI_SOURCE << ", tag is " << status.MPI_TAG << std::endl;
+        
+        delete[] buffer;
     }
     
     MPI_Finalize();
