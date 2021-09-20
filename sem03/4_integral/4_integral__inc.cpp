@@ -13,7 +13,6 @@ int main(int argc, char* argv[]) {
     double integral = 0;
     double dx = 1 / (double)N;
     
-    # pragma omp parallel for reduction(+:integral)
     for (int i = 1; i <= N; i++) {
         double part = ( f(dx * i) + f(dx * (i - 1)) ) * dx / 2;  // площадь трапеции
         integral = integral + part;
