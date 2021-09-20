@@ -8,16 +8,10 @@ double f(double x){
 
 int main(int argc, char* argv[]) {
     
-    //long const N = 1e6;
-    int num_procs = atoi(argv[1]);
-    long N = atol(argv[2]);
-    
-    omp_set_num_threads(num_procs);
+    long const N = 1e6;
     
     double integral = 0;
     double dx = 1 / (double)N;
-    
-    double begin = omp_get_wtime();
     
     # pragma omp parallel for reduction(+:integral)
     for (int i = 1; i <= N; i++) {
@@ -25,6 +19,5 @@ int main(int argc, char* argv[]) {
         integral = integral + part;
     }
     
-    double end = omp_get_wtime();
-    std::cout << "Threads " << num_procs << " spend time " << end - begin << " got integral: " << integral << std::endl;
+    std::cout << integral << std::endl;
 }

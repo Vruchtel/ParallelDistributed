@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
     std::cout << "--------------------------------------------------------------------" << std::endl;
     
     int num_procs = omp_get_num_procs();
-    std::cout << "Number of available processes: " << num_procs << std::endl;
+    std::cout << "Number of available processors: " << num_procs << std::endl;
     
     omp_set_num_threads(num_procs);
     int num_of_threads = omp_get_num_threads();

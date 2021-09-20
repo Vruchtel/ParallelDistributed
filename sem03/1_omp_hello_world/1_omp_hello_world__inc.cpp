@@ -13,10 +13,7 @@ int main(int argc, char **argv) {
     {   
         thread_id = omp_get_thread_num();
         
-        # pragma omp critical 
-        {
-            std::cout << "Hello, World from id: " << thread_id << "!" << std::endl;
-        }
+        std::cout << "Hello, World from id: " << thread_id << "!" << std::endl;
         
         if (thread_id == 0) {
             num_of_threads = omp_get_num_threads();
